@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------- */
+/* THEME TOKENS                                                      */
+/* Every color in the app is driven from these variables so the      */
+/* dark/light toggle never requires touching component files.        */
+/* ---------------------------------------------------------------- */
+:root,
+[data-theme='dark'] {
+  --surface-0-rgb: 10 10 10; /* #0A0A0A */
+  --surface-1-rgb: 13 13 13; /* #0D0D0D */
+  --surface-2-rgb: 16 16 16; /* #101010 */
+  --surface-3-rgb: 18 18 18; /* #121212 */
+  --surface-4-rgb: 21 21 21; /* #151515 */
+  --surface-5-rgb: 24 24 24; /* #181818 */
+
+  --ink-primary: #F2F2F2;
+  --ink-primary-rgb: 242 242 242;
+  --ink-secondary: #A0A0A0;
+  --ink-muted: #666666;
+
+  --border: rgba(255, 255, 255, 0.10);
+  --accent: #C9A45C;
+  --vignette: rgba(0, 0, 0, 0.55);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.14);
+  --selection-text: #0A0A0A;
+}
+
+[data-theme='light'] {
+  --surface-0-rgb: 244 244 241; /* #F4F4F1 */
+  --surface-1-rgb: 240 240 236;
+  --surface-2-rgb: 236 236 231;
+  --surface-3-rgb: 231 231 225;
+  --surface-4-rgb: 226 226 219;
+  --surface-5-rgb: 221 221 213;
+
+  --ink-primary: #111111;
+  --ink-primary-rgb: 17 17 17;
+  --ink-secondary: #555555;
+  --ink-muted: #8A8A8A;
+
+  --border: rgba(0, 0, 0, 0.12);
+  --accent: #B8863E;
+  --vignette: rgba(0, 0, 0, 0.10);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.16);
+  --selection-text: #F4F4F1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: rgb(var(--surface-0-rgb));
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+body.is-scrollable-mobile {
+  overflow-y: auto;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--selection-text);
+}
+
+/* thin scrollbars, kept quiet */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Smooth theme crossfade. Low specificity on purpose: any element with
+   its own Tailwind transition-colors/transition-all utility keeps its
+   own (usually faster) timing for hover/active states. */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 450ms;
+}
+
+/* film grain overlay, extremely low opacity */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  pointer-events: none;
+  box-shadow: inset 0 0 18vw var(--vignette);
+}
+
+/* custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgb(var(--ink-primary-rgb) / 0.7);
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-primary);
+  background: transparent;
+  will-change: transform;
+}
+
+.custom-cursor.is-active {
+  width: 64px;
+  height: 64px;
+  background: rgb(var(--surface-0-rgb) / 0.85);
+  border-color: rgb(var(--ink-primary-rgb) / 0.25);
+  backdrop-filter: blur(2px);
+}
+
+@media (hover: none), (max-width: 860px) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+.section-shell {
+  scrollbar-width: thin;
+}
+
+/* ---------------------------------------------------------------- */
+/* REVEAL SYSTEM — text / stagger / image entrances                  */
+/* Performant on purpose: only transform, opacity, clip-path.        */
+/* ---------------------------------------------------------------- */
+@keyframes reveal-line {
+  from {
+    transform: translateY(105%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-image {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+    transform: scale(1.05) translateY(26px);
+  }
+  to {
+    clip-path: inset(0% 0 0 0);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes page-number-in {
+  from {
+    transform: translateY(60%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reveal-line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.reveal-line-inner {
+  display: block;
+  animation: reveal-line 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.reveal-up {
+  animation: reveal-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-image-el {
+  animation: reveal-image 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.page-number-el {
+  display: inline-block;
+  animation: page-number-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

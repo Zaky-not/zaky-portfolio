@@ -1,0 +1,17 @@
+{
+  "isPlaceholder": true,
+  "note": "Placeholder data — wire up src/services/codingStats.js to a real source to replace it.",
+  "coding": {
+    "totalTimeHours": 124,
+    "commits": 237,
+    "linesWritten": 48291,
+    "languages": [
+      { "name": "JavaScript", "percent": 38 },
+      { "name": "TypeScript", "percent": 27 },
+      { "name": "Python", "percent": 18 },
+      { "name": "HTML", "percent": 10 },
+      { "name": "CSS", "percent": 7 }
+    ],
+    "weeklyActivity": [3, 5, 2, 6, 8, 4, 7]
+  }
+}
