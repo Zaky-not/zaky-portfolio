@@ -26,7 +26,7 @@ const achievements = [
   },
   {
     id: 'achievement-02',
-    title: 'Dekan Cup',
+    title: 'Dekan Cup FEB',
     year: '2025',
     description: {
       id: 'Dekan Cup FEB.',

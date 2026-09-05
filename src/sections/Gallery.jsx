@@ -7,101 +7,107 @@ import RevealImage from '../components/RevealImage.jsx'
 import ExploreHint from '../components/ExploreHint.jsx'
 
 const SIZE_CLASSES = {
-  large: 'row-span-2 col-span-2',
-  medium: 'row-span-2 col-span-1',
-  small: 'row-span-1 col-span-1',
+large: 'row-span-2 col-span-2',
+medium: 'row-span-2 col-span-1',
+small: 'row-span-1 col-span-1',
+}
+
+const MOBILE_HEIGHTS = {
+large: 'h-[240px]',
+medium: 'h-[190px]',
+small: 'h-[150px]',
 }
 
 const ROTATIONS = [
-  '-rotate-1',
-  'rotate-0',
-  'rotate-1',
-  'rotate-0',
-  '-rotate-1',
-  'rotate-1',
-  'rotate-0',
+'-rotate-1',
+'rotate-0',
+'rotate-1',
+'rotate-0',
+'-rotate-1',
+'rotate-1',
+'rotate-0',
 ]
 
 const Gallery = forwardRef(function Gallery({ isActive }, ref) {
-  const { t } = useLanguage()
-  const enterKey = useSectionReveal(isActive)
-  const [lightboxSrc, setLightboxSrc] = useState(null)
+const { t } = useLanguage()
+const enterKey = useSectionReveal(isActive)
+const [lightboxSrc, setLightboxSrc] = useState(null)
 
-  return (
-    <section
-      ref={ref}
-      id="gallery"
-      className="section-shell h-[100dvh] w-full overflow-y-auto bg-surface-0"
-    >
-      <div
-        key={enterKey}
-        className="min-h-[100dvh] px-6 md:px-16 pt-28 pb-16"
+return ( <section
+   ref={ref}
+   id="gallery"
+   className="section-shell h-[100dvh] w-full overflow-y-auto bg-surface-0"
+ > <div
+     key={enterKey}
+     className="min-h-[100dvh] px-6 md:px-16 pt-28 pb-16"
+   > <div className="max-w-[1400px] mx-auto w-full">
+
+```
+      <h2 className="font-display text-4xl md:text-5xl text-ink-primary reveal-line-mask">
+        <span className="reveal-line-inner">
+          {t.gallery.title}
+        </span>
+      </h2>
+
+      <p
+        className="mt-4 text-ink-secondary max-w-md reveal-up"
+        style={{ animationDelay: '160ms' }}
       >
-        <div className="max-w-[1400px] mx-auto w-full">
+        {t.gallery.lead}
+      </p>
 
-          {/* TITLE */}
-          <h2 className="font-display text-4xl md:text-5xl text-ink-primary reveal-line-mask">
-            <span className="reveal-line-inner">
-              {t.gallery.title}
-            </span>
-          </h2>
-
-          {/* DESCRIPTION */}
-          <p
-            className="mt-4 text-ink-secondary max-w-md reveal-up"
-            style={{ animationDelay: '160ms' }}
-          >
-            {t.gallery.lead}
-          </p>
-
-          {/* GALLERY */}
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] md:auto-rows-[160px] gap-4">
-            {galleryItems.map((item, i) => (
-              <RevealImage
-                key={item.id}
-                src={item.image}
-                alt={item.caption}
-                delay={(i % 4) * 90}
-                cursorLabel="VIEW"
-                onClick={() => setLightboxSrc(item.image)}
-                className={`
-                  relative
-                  border
-                  border-line
-                  cursor-pointer
-                  ${SIZE_CLASSES[item.size]}
-                  ${ROTATIONS[i % ROTATIONS.length]}
-                  hover:rotate-0
-                  transition-transform
-                  duration-500
-                  ease-signature
-                `}
-                imgClassName="
-                  w-full
-                  h-full
-                  object-cover
-                  object-center
-                  hover:scale-105
-                  transition-transform
-                  duration-700
-                  ease-signature
-                "
-              />
-            ))}
-          </div>
-
-          <ExploreHint nextKey="stats" />
-        </div>
+      <div className="mt-14 columns-2 gap-4 md:grid md:grid-cols-4 md:auto-rows-[160px] md:gap-4">
+        {galleryItems.map((item, i) => (
+          <RevealImage
+            key={item.id}
+            src={item.image}
+            alt={item.caption}
+            delay={(i % 4) * 90}
+            cursorLabel="VIEW"
+            onClick={() => setLightboxSrc(item.image)}
+            className={[
+              'relative',
+              'w-full',
+              MOBILE_HEIGHTS[item.size],
+              'mb-4',
+              'break-inside-avoid',
+              'border',
+              'border-line',
+              'cursor-pointer',
+              ROTATIONS[i % ROTATIONS.length],
+              'hover:rotate-0',
+              'transition-transform',
+              'duration-500',
+              'ease-signature',
+              'md:mb-0',
+              SIZE_CLASSES[item.size],
+            ].join(' ')}
+            imgClassName="
+              w-full
+              h-full
+              object-cover
+              object-center
+              hover:scale-105
+              transition-transform
+              duration-700
+              ease-signature
+            "
+          />
+        ))}
       </div>
 
-      {/* LIGHTBOX */}
-      <Lightbox
-        src={lightboxSrc}
-        alt="Gallery"
-        onClose={() => setLightboxSrc(null)}
-      />
-    </section>
-  )
+      <ExploreHint nextKey="stats" />
+    </div>
+  </div>
+
+  <Lightbox
+    src={lightboxSrc}
+    alt="Gallery"
+    onClose={() => setLightboxSrc(null)}
+  />
+</section>
+
+)
 })
 
 export default Gallery

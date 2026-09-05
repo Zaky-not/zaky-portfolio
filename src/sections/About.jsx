@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext.jsx'
 import { useSectionReveal } from '../hooks/useSectionReveal.js'
 import Marquee from '../components/Marquee.jsx'
 import ExploreHint from '../components/ExploreHint.jsx'
-import profileImage from '../assets/profile/zaky.jpg'
+import profileImage from '../assets/profile/zakybaru.jpeg'
 
 const About = forwardRef(function About({ isActive }, ref) {
   const { t } = useLanguage()

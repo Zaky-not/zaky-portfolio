@@ -3,9 +3,9 @@ import { useLanguage } from '../context/LanguageContext.jsx'
 import { useSectionReveal } from '../hooks/useSectionReveal.js'
 
 const SOCIALS = [
-  { label: 'GitHub', url: 'https://github.com/yourusername' },
-  { label: 'LinkedIn', url: 'https://linkedin.com/in/yourusername' },
-  { label: 'Instagram', url: 'https://instagram.com/yourusername' },
+  { label: 'GitHub', url: 'https://github.com/Zaky-not/Zaky-not.git' },
+  { label: 'Discord', url: 'https://discord.com/users/1029988089558487081' },
+  { label: 'Instagram', url: 'https://www.instagram.com/jaky.not.jek.2233?igsh=eWEyaWlvYnVuaWI5' },
 ]
 
 const Contact = forwardRef(function Contact({ isActive }, ref) {
@@ -30,7 +30,7 @@ const Contact = forwardRef(function Contact({ isActive }, ref) {
               {t.contact.lead}
             </p>
             <a
-              href="mailto:hello@zaky.dev"
+              href="mailto:zakyyxd123@gmail.com"
               data-cursor="SEND"
               className="mt-10 inline-flex items-center gap-1 font-mono text-sm tracking-[0.1em] text-accent border-b border-accent pb-1 hover:text-ink-primary hover:border-ink-primary transition-colors reveal-up group"
               style={{ animationDelay: '520ms' }}
@@ -48,7 +48,7 @@ const Contact = forwardRef(function Contact({ isActive }, ref) {
           >
             <div>
               <span className="font-mono text-[10px] tracking-[0.15em] text-ink-muted">{t.contact.emailLabel}</span>
-              <p className="mt-2 text-ink-primary">hello@zaky.dev</p>
+              <p className="mt-2 text-ink-primary">zakyyxd123@gmail.com</p>
             </div>
             <div>
               <span className="font-mono text-[10px] tracking-[0.15em] text-ink-muted">{t.contact.socialLabel}</span>

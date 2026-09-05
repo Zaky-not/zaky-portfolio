@@ -152,7 +152,7 @@ const translations = {
       skillsTitle: 'Skills',
       interestsTitle: 'Interests',
       focusTitle: 'Current Focus',
-      focusValue: 'Building web experiences that feel personal and fast.',
+      focusValue: 'Learning ethical hacking, REST API, Building Database.',
       locationTitle: 'Location',
       locationValue: 'Jambi, Indonesia',
       skills: ['React', 'JavaScript', 'Node.js', 'Tailwind CSS', 'GSAP', 'UI Engineering'],

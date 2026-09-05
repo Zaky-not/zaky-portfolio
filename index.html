@@ -1,30 +1,52 @@
 <!doctype html>
+
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZAKY — Digital Experience</title>
-    <meta name="description" content="Zaky — developer portfolio, an interactive digital experience." />
-    <script>
-      // Applied before any CSS paints to avoid a flash of the wrong theme.
-      (function () {
-        try {
-          var stored = localStorage.getItem('zaky-theme');
-          document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      })();
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+
+```
+<link rel="shortcut icon" href="/basketball-favicon.png" />
+
+<link rel="icon" type="image/png" href="/basketball-favicon.png" />
+
+<title>Jekzos </title>
+<meta
+  name="description"
+  content="Jekzos— developer portfolio, an interactive digital experience."
+/>
+
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('zaky-theme');
+      document.documentElement.setAttribute(
+        'data-theme',
+        stored === 'light' ? 'light' : 'dark'
+      );
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+```
+
   </head>
+
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+```
+<script type="module" src="/src/main.jsx"></script>
+```
+
   </body>
 </html>

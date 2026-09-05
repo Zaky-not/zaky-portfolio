@@ -24,7 +24,7 @@ export default function Navbar({ activeIndex, onNavigate }) {
           onClick={() => handleNavigate(0)}
           aria-label="Go to home"
         >
-          ZAKY
+          Jekzoz
         </button>
 
         <nav className="hidden lg:flex items-center gap-7" aria-label="Primary">

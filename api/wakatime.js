@@ -14,32 +14,59 @@ export default async function handler(req, res) {
 
   const auth = Buffer.from(`${apiKey}:`).toString('base64')
 
+  const headers = {
+    Accept: 'application/json',
+    Authorization: `Basic ${auth}`,
+  }
+
   try {
-    const response = await fetch(
-      'https://api.wakatime.com/api/v1/users/current/stats/all_time',
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Basic ${auth}`,
-        },
-      },
+    const totalResponse = await fetch(
+      'https://api.wakatime.com/api/v1/users/current/all_time_since_today',
+      { headers },
     )
 
-    const payload = await response.json().catch(() => ({}))
+    const totalPayload = await totalResponse.json().catch(() => ({}))
 
-    if (!response.ok) {
-      return res.status(response.status).json({
+    if (!totalResponse.ok) {
+      return res.status(totalResponse.status).json({
         error:
-          payload?.error ||
-          payload?.errors?.[0]?.message ||
-          'WakaTime API request failed.',
+          totalPayload?.error ||
+          totalPayload?.errors?.[0]?.message ||
+          'WakaTime request failed.',
       })
     }
 
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600')
-    return res.status(200).json(payload)
+    const total = totalPayload.data || {}
+
+    const start = total.range?.start_date
+    const end = total.range?.end_date
+
+    let summaries = []
+
+    if (start && end) {
+      const summariesResponse = await fetch(
+        `https://api.wakatime.com/api/v1/users/current/summaries?start=${start}&end=${end}`,
+        { headers },
+      )
+
+      const summariesPayload = await summariesResponse
+        .json()
+        .catch(() => ({}))
+
+      if (summariesResponse.ok) {
+        summaries = summariesPayload.data || []
+      }
+    }
+
+    return res.status(200).json({
+      data: {
+        ...total,
+        summaries,
+      },
+    })
   } catch (error) {
     console.error('WakaTime proxy error:', error)
+
     return res.status(502).json({
       error: 'Unable to reach WakaTime right now.',
     })

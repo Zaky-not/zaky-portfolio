@@ -1,13 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react'
+import jefferson from '../assets/music/jefferson.mp3'
+import matimuda from '../assets/music/matimuda.mp3'
+import sekianTerimaKasih from '../assets/music/sekian,terima_kasih.mp3'
 
-// Replace src with real files in src/assets/music/ (or /public/music/).
-// Keeping this list here means the player UI never needs to change when
-// tracks are swapped.
 const TRACKS = [
-  { id: 'track-01', title: 'Track 01', artist: 'Unreleased', src: '/music/track-01.mp3' },
-  { id: 'track-02', title: 'Track 02', artist: 'Unreleased', src: '/music/track-02.mp3' },
-  { id: 'track-03', title: 'Track 03', artist: 'Unreleased', src: '/music/track-03.mp3' },
-  { id: 'track-04', title: 'Track 04', artist: 'Unreleased', src: '/music/track-04.mp3' },
+  { id: jefferson, title: 'Jefferson', artist: 'FSTVLS', src: jefferson },
+  { id: matimuda, title: 'Matimuda', artist: 'Jenny', src: matimuda },
+  { id: sekianTerimaKasih, title: 'Sekian Terima Kasih', artist: 'The Jeblogs,Lealona', src: sekianTerimaKasih },
 ]
 
 const PlayerContext = createContext(null)
