@@ -54,7 +54,7 @@ export default function LoadingScreen({ isActive, fromIndex, toIndex }) {
     >
       {isActive && (
         <div key={key} className="flex flex-col items-center gap-8 px-6">
-          <span className="font-display text-lg tracking-[0.3em] text-ink-primary">ZAKY®</span>
+          <span className="font-display text-lg tracking-[0.3em] text-ink-primary">Jekzos</span>
 
           <div className="flex items-center gap-3 font-mono text-xs tracking-[0.2em] text-ink-muted">
             <span className="reveal-line-mask">
