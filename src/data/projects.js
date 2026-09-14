@@ -44,6 +44,19 @@ const projects = [
     image: profilgithub,
     url: 'https://github.com/Zaky-not/Zaky-not.git',
   },
+  {
+    id: 'project-04',
+    title: 'Web Drestanta Tiyasa',
+    category: 'Making A Web For DTS',
+    year: '2026',
+    description: {
+      id: 'Web buat Drestanta Tiyasa Tercinta.',
+      en: 'Web for Drestanta Tiyasa.',
+    },
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    image: profilgithub,
+    url: 'https://drestanta-tiyasa.vercel.app/',
+  },
 ]
 
 export default projects

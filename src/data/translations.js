@@ -14,9 +14,8 @@ const translations = {
     home: {
       eyebrow: '',
       headline: ['MUHAMMAD', 'ALBAR', 'AL-ZAKY.'],
-      subline: 'Aku adalah developer yang menerjemahkan ide-ide kreatif menjadi produk digital yang terasa hidup.',
-      scrollHint: 'Gulir untuk menjelajah',
-      statusOnline: 'ONLINE',
+      subline: 'Mulai Lah, Karena Kamu Tidak AKan Pernah Siap.',
+      scrollHint: 'Gulir untuk menjelajah', 
       localTimeLabel: 'WAKTU LOKAL',
       dateLabel: 'TANGGAL',
       statusLabel: 'STATUS',
@@ -136,9 +135,8 @@ const translations = {
     },
     home: {
       headline: ['MUHAMMAD', 'ALBAR', 'AL-ZAKY.'],
-      subline: 'I am a developer who transforms creative ideas into digital products that feel alive.',
+      subline: 'Just Start You Will Never Be Ready.',
       scrollHint: 'Scroll to explore',
-      statusOnline: 'ONLINE',
       localTimeLabel: 'LOCAL TIME',
       dateLabel: 'DATE',
       statusLabel: 'STATUS',

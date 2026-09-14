@@ -146,7 +146,7 @@ const About = forwardRef(function About({ isActive }, ref) {
 
         {/* MARQUEE */}
         <div className="max-w-[1400px] mx-auto w-full mt-14">
-          <Marquee text="ZAKY — DEVELOPER — BUILDER — CREATIVE CODER — ZAKY —" />
+          <Marquee text="Just Start Guys" />
         </div>
 
         {/* NEXT SECTION */}
