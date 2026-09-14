@@ -1,6 +1,7 @@
 import clinicQueueImage from '../assets/projects/Clinic Queue.jpeg'
 import firstwebimage from '../assets/projects/firstweb.png'
 import profilgithub from '../assets/projects/profilgithub.png'
+import drestanta from '../assets/projects/dts1.png'
 
 const projects = [
   {
@@ -54,7 +55,7 @@ const projects = [
       en: 'Web for Drestanta Tiyasa.',
     },
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    image: profilgithub,
+    image: drestanta,
     url: 'https://drestanta-tiyasa.vercel.app/',
   },
 ]

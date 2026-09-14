@@ -139,29 +139,28 @@ const Home = forwardRef(function Home({ isActive }, ref) {
             >
 
               {/* PHOTO */}
+
               <div
                 ref={photoRef}
                 className="absolute inset-0 will-change-transform"
               >
-
                 <img
                   src={profilePhoto}
                   alt="Zaky"
                   className="w-full h-full object-cover transition-transform duration-700 ease-signature group-hover:scale-[1.03]"
                 />
-
               </div>
 
               {/* FRAME */}
+
               <div className="absolute inset-0 border border-line pointer-events-none" />
 
               {/* PROFILE LABEL */}
-              <div className="absolute bottom-3 left-3 px-2 py-1 bg-surface-0/85 backdrop-blur-sm border border-line">
 
+              <div className="absolute bottom-3 left-3 px-2 py-1 bg-surface-0/85 backdrop-blur-sm border border-line">
                 <span className="font-mono text-[9px] tracking-[0.12em] text-ink-primary">
                   ZAKY / PROFILE
                 </span>
-
               </div>
 
             </div>
@@ -192,22 +191,6 @@ const Home = forwardRef(function Home({ isActive }, ref) {
             value={date}
             mono
             delay={700}
-          />
-
-          {/* STATUS */}
-
-          <RealtimeField
-            label={t.home.statusLabel}
-            delay={780}
-            value={
-              <span className="flex items-center gap-2">
-
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-
-                {t.home.statusOnline}
-
-              </span>
-            }
           />
 
           {/* LOCATION */}
